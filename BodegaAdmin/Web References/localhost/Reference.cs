@@ -31,9 +31,15 @@ namespace BodegaAdmin.localhost {
         
         private System.Threading.SendOrPostCallback HelloWorldOperationCompleted;
         
-        private System.Threading.SendOrPostCallback saveProductOperationCompleted;
+        private System.Threading.SendOrPostCallback SaveProductOperationCompleted;
         
-        private System.Threading.SendOrPostCallback saveSaleOperationCompleted;
+        private System.Threading.SendOrPostCallback UpdateProductOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback DeleteProductOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback ListProductsOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback SaveSaleOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -77,10 +83,19 @@ namespace BodegaAdmin.localhost {
         public event HelloWorldCompletedEventHandler HelloWorldCompleted;
         
         /// <remarks/>
-        public event saveProductCompletedEventHandler saveProductCompleted;
+        public event SaveProductCompletedEventHandler SaveProductCompleted;
         
         /// <remarks/>
-        public event saveSaleCompletedEventHandler saveSaleCompleted;
+        public event UpdateProductCompletedEventHandler UpdateProductCompleted;
+        
+        /// <remarks/>
+        public event DeleteProductCompletedEventHandler DeleteProductCompleted;
+        
+        /// <remarks/>
+        public event ListProductsCompletedEventHandler ListProductsCompleted;
+        
+        /// <remarks/>
+        public event SaveSaleCompletedEventHandler SaveSaleCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/HelloWorld", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -110,58 +125,143 @@ namespace BodegaAdmin.localhost {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/saveProduct", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public bool saveProduct(Products product) {
-            object[] results = this.Invoke("saveProduct", new object[] {
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/SaveProduct", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool SaveProduct(Products product) {
+            object[] results = this.Invoke("SaveProduct", new object[] {
                         product});
             return ((bool)(results[0]));
         }
         
         /// <remarks/>
-        public void saveProductAsync(Products product) {
-            this.saveProductAsync(product, null);
+        public void SaveProductAsync(Products product) {
+            this.SaveProductAsync(product, null);
         }
         
         /// <remarks/>
-        public void saveProductAsync(Products product, object userState) {
-            if ((this.saveProductOperationCompleted == null)) {
-                this.saveProductOperationCompleted = new System.Threading.SendOrPostCallback(this.OnsaveProductOperationCompleted);
+        public void SaveProductAsync(Products product, object userState) {
+            if ((this.SaveProductOperationCompleted == null)) {
+                this.SaveProductOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSaveProductOperationCompleted);
             }
-            this.InvokeAsync("saveProduct", new object[] {
-                        product}, this.saveProductOperationCompleted, userState);
+            this.InvokeAsync("SaveProduct", new object[] {
+                        product}, this.SaveProductOperationCompleted, userState);
         }
         
-        private void OnsaveProductOperationCompleted(object arg) {
-            if ((this.saveProductCompleted != null)) {
+        private void OnSaveProductOperationCompleted(object arg) {
+            if ((this.SaveProductCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.saveProductCompleted(this, new saveProductCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.SaveProductCompleted(this, new SaveProductCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/saveSale", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public bool saveSale() {
-            object[] results = this.Invoke("saveSale", new object[0]);
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/UpdateProduct", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool UpdateProduct(Products product) {
+            object[] results = this.Invoke("UpdateProduct", new object[] {
+                        product});
             return ((bool)(results[0]));
         }
         
         /// <remarks/>
-        public void saveSaleAsync() {
-            this.saveSaleAsync(null);
+        public void UpdateProductAsync(Products product) {
+            this.UpdateProductAsync(product, null);
         }
         
         /// <remarks/>
-        public void saveSaleAsync(object userState) {
-            if ((this.saveSaleOperationCompleted == null)) {
-                this.saveSaleOperationCompleted = new System.Threading.SendOrPostCallback(this.OnsaveSaleOperationCompleted);
+        public void UpdateProductAsync(Products product, object userState) {
+            if ((this.UpdateProductOperationCompleted == null)) {
+                this.UpdateProductOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdateProductOperationCompleted);
             }
-            this.InvokeAsync("saveSale", new object[0], this.saveSaleOperationCompleted, userState);
+            this.InvokeAsync("UpdateProduct", new object[] {
+                        product}, this.UpdateProductOperationCompleted, userState);
         }
         
-        private void OnsaveSaleOperationCompleted(object arg) {
-            if ((this.saveSaleCompleted != null)) {
+        private void OnUpdateProductOperationCompleted(object arg) {
+            if ((this.UpdateProductCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.saveSaleCompleted(this, new saveSaleCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.UpdateProductCompleted(this, new UpdateProductCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/DeleteProduct", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool DeleteProduct(Products product) {
+            object[] results = this.Invoke("DeleteProduct", new object[] {
+                        product});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void DeleteProductAsync(Products product) {
+            this.DeleteProductAsync(product, null);
+        }
+        
+        /// <remarks/>
+        public void DeleteProductAsync(Products product, object userState) {
+            if ((this.DeleteProductOperationCompleted == null)) {
+                this.DeleteProductOperationCompleted = new System.Threading.SendOrPostCallback(this.OnDeleteProductOperationCompleted);
+            }
+            this.InvokeAsync("DeleteProduct", new object[] {
+                        product}, this.DeleteProductOperationCompleted, userState);
+        }
+        
+        private void OnDeleteProductOperationCompleted(object arg) {
+            if ((this.DeleteProductCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.DeleteProductCompleted(this, new DeleteProductCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ListProducts", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public Products[] ListProducts() {
+            object[] results = this.Invoke("ListProducts", new object[0]);
+            return ((Products[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ListProductsAsync() {
+            this.ListProductsAsync(null);
+        }
+        
+        /// <remarks/>
+        public void ListProductsAsync(object userState) {
+            if ((this.ListProductsOperationCompleted == null)) {
+                this.ListProductsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnListProductsOperationCompleted);
+            }
+            this.InvokeAsync("ListProducts", new object[0], this.ListProductsOperationCompleted, userState);
+        }
+        
+        private void OnListProductsOperationCompleted(object arg) {
+            if ((this.ListProductsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ListProductsCompleted(this, new ListProductsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/SaveSale", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool SaveSale() {
+            object[] results = this.Invoke("SaveSale", new object[0]);
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void SaveSaleAsync() {
+            this.SaveSaleAsync(null);
+        }
+        
+        /// <remarks/>
+        public void SaveSaleAsync(object userState) {
+            if ((this.SaveSaleOperationCompleted == null)) {
+                this.SaveSaleOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSaveSaleOperationCompleted);
+            }
+            this.InvokeAsync("SaveSale", new object[0], this.SaveSaleOperationCompleted, userState);
+        }
+        
+        private void OnSaveSaleOperationCompleted(object arg) {
+            if ((this.SaveSaleCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.SaveSaleCompleted(this, new SaveSaleCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -257,17 +357,17 @@ namespace BodegaAdmin.localhost {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
-    public delegate void saveProductCompletedEventHandler(object sender, saveProductCompletedEventArgs e);
+    public delegate void SaveProductCompletedEventHandler(object sender, SaveProductCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class saveProductCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class SaveProductCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal saveProductCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal SaveProductCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -283,17 +383,95 @@ namespace BodegaAdmin.localhost {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
-    public delegate void saveSaleCompletedEventHandler(object sender, saveSaleCompletedEventArgs e);
+    public delegate void UpdateProductCompletedEventHandler(object sender, UpdateProductCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class saveSaleCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class UpdateProductCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal saveSaleCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal UpdateProductCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    public delegate void DeleteProductCompletedEventHandler(object sender, DeleteProductCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class DeleteProductCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal DeleteProductCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    public delegate void ListProductsCompletedEventHandler(object sender, ListProductsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ListProductsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ListProductsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public Products[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((Products[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    public delegate void SaveSaleCompletedEventHandler(object sender, SaveSaleCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class SaveSaleCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal SaveSaleCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

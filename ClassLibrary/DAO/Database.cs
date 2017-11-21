@@ -15,24 +15,31 @@ namespace ClassLibrary.DAO
 
         public Database()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.Load("c:\\database.xml");
-            XmlNode node;
+            try
+            {
+                XmlDocument doc = new XmlDocument();
+                doc.Load("c:\\database.xml");
+                XmlNode node;
 
-            node = doc.DocumentElement.SelectSingleNode("/database/local");
-            local = node.InnerText;
+                node = doc.DocumentElement.SelectSingleNode("/database/local");
+                local = node.InnerText;
 
-            node = doc.DocumentElement.SelectSingleNode("/database/name");
-            name = node.InnerText;
+                node = doc.DocumentElement.SelectSingleNode("/database/name");
+                name = node.InnerText;
 
-            node = doc.DocumentElement.SelectSingleNode("/database/user");
-            user = node.InnerText;
+                node = doc.DocumentElement.SelectSingleNode("/database/user");
+                user = node.InnerText;
 
-            node = doc.DocumentElement.SelectSingleNode("/database/password");
-            password = node.InnerText;
+                node = doc.DocumentElement.SelectSingleNode("/database/password");
+                password = node.InnerText;
 
-            node = doc.DocumentElement.SelectSingleNode("/database/port");
-            port = node.InnerText;
+                node = doc.DocumentElement.SelectSingleNode("/database/port");
+                port = node.InnerText;
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Os dados de conexão com o banco de dados não foram encontrados! " + e.Message);
+            }
         }
         
         public static Database getInstance()
@@ -55,13 +62,11 @@ namespace ClassLibrary.DAO
             }
             catch (NpgsqlException npgEx)
             {
-                Console.WriteLine(npgEx.Message + " openConnection");
-                return null;
+                throw new Exception("Erro na conexão com o banco de dados! " + npgEx.Message);
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message + " openConnection");
-                return null;
+                throw new Exception("Erro ao abrir conexão com o banco de dados! " + e.Message);
             }
         }
     }

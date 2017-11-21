@@ -76,7 +76,7 @@
             this.btnConfirProd.TabIndex = 4;
             this.btnConfirProd.Text = "Salvar Produto";
             this.btnConfirProd.UseVisualStyleBackColor = true;
-            this.btnConfirProd.Click += new System.EventHandler(this.btnConfirProd_Click);
+            this.btnConfirProd.Click += new System.EventHandler(this.BtnConfirProd_Click);
             // 
             // btnCancelProd
             // 
@@ -86,7 +86,7 @@
             this.btnCancelProd.TabIndex = 5;
             this.btnCancelProd.Text = "Fechar";
             this.btnCancelProd.UseVisualStyleBackColor = true;
-            this.btnCancelProd.Click += new System.EventHandler(this.btnCancelProd_Click);
+            this.btnCancelProd.Click += new System.EventHandler(this.BtnCancelProd_Click);
             // 
             // FormProd
             // 

@@ -1,7 +1,9 @@
 ﻿using System.Web.Script.Services;
 using System.Web.Services;
-using ClassLibrary.Controller;
+using ClassLibrary.Business;
 using ClassLibrary.Model;
+using System.Collections.Generic;
+using System;
 
 namespace BodegaWeb
 {
@@ -20,21 +22,45 @@ namespace BodegaWeb
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public string HelloWorld()
         {
+            //return JsonConvert.ExportToString("Hello World");
             return "Hello World";
         }
 
         [WebMethod]
-        public bool saveProduct(Products product)
+        public bool SaveProduct(Products product)
         {
-            ProductsController controller = new ProductsController();
-            return controller.saveProduct(product) ? true : false;// JsonConvert.ExportToString("Hello World");
+            ProductsBusiness business = new ProductsBusiness();
+            return business.SaveProduct(product);
         }
 
         [WebMethod]
-        public bool saveSale()
+        public bool UpdateProduct(Products product)
         {
-            return false;
+            ProductsBusiness business = new ProductsBusiness();
+            return business.UpdateProduct(product);
         }
 
+        [WebMethod]
+        public bool DeleteProduct(Products product)
+        {
+            ProductsBusiness business = new ProductsBusiness();
+            return business.DeleteProduct(product);
+        }
+
+        [WebMethod]
+        public List<Products> ListProducts()
+        {
+            ProductsBusiness business = new ProductsBusiness();
+            return business.ListProducts();
+        }
+
+        [WebMethod]
+        public bool SaveSale()
+        {
+            Sales sale = new Sales();
+
+            SalesBusiness business = new SalesBusiness();
+            return business.SaveSale(sale);
+        }
     }
 }
