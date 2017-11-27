@@ -16,6 +16,7 @@ namespace BodegaAdmin
         public FormProd(Products p, int cod)
         {
             InitializeComponent();
+            edtNameProd.MaxLength = 45;
             product = p;
             codForm = (product == null) ? 0 : cod;
             ReadCod();
@@ -161,6 +162,18 @@ namespace BodegaAdmin
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        // EdtPriceProd apenas aceita numeros e uma casa decimal
+        private void EdtPriceProd_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsDigit(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == ','))
+            { e.Handled = true; }
+            TextBox txtDecimal = sender as TextBox;
+            if (e.KeyChar == ',' && txtDecimal.Text.Contains(","))
+            {
+                e.Handled = true;
             }
         }
     }

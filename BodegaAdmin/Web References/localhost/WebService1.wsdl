@@ -77,12 +77,194 @@
         </s:sequence>
       </s:complexType>
       <s:element name="SaveSale">
-        <s:complexType />
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sale" type="tns:Sales" />
+          </s:sequence>
+        </s:complexType>
       </s:element>
+      <s:complexType name="Sales">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="Open" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="OpenedDateTime" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ClosedDateTime" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="User" type="tns:User" />
+          <s:element minOccurs="0" maxOccurs="1" name="ListSaleItems" type="tns:ArrayOfSaleItems" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="User">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="Login" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Permission" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfSaleItems">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SaleItems" nillable="true" type="tns:SaleItems" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SaleItems">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Qtd" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="UnitPrice" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="Product" type="tns:Products" />
+          <s:element minOccurs="0" maxOccurs="1" name="Sale" type="tns:Sales" />
+        </s:sequence>
+      </s:complexType>
       <s:element name="SaveSaleResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="SaveSaleResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="SaveSaleResult" type="tns:Sales" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteSale">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sale" type="tns:Sales" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteSaleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DeleteSaleResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListAllSales">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="tns:User" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListAllSalesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListAllSalesResult" type="tns:ArrayOfSales" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSales">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Sales" nillable="true" type="tns:Sales" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ListSales">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="tns:User" />
+            <s:element minOccurs="1" maxOccurs="1" name="open" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListSalesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListSalesResult" type="tns:ArrayOfSales" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeOpenedSale">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sale" type="tns:Sales" />
+            <s:element minOccurs="1" maxOccurs="1" name="open" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeOpenedSaleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ChangeOpenedSaleResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertSaleItem">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="item" type="tns:SaleItems" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertSaleItemResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InsertSaleItemResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IncreaseQtdSaleItem">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="item" type="tns:SaleItems" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IncreaseQtdSaleItemResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IncreaseQtdSaleItemResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="tns:User" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InsertUserResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="tns:User" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateUserResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="tns:User" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DeleteUserResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckLogin">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="tns:User" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckLoginResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckLoginResult" type="tns:User" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -124,6 +306,66 @@
   <wsdl:message name="SaveSaleSoapOut">
     <wsdl:part name="parameters" element="tns:SaveSaleResponse" />
   </wsdl:message>
+  <wsdl:message name="DeleteSaleSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteSale" />
+  </wsdl:message>
+  <wsdl:message name="DeleteSaleSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteSaleResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListAllSalesSoapIn">
+    <wsdl:part name="parameters" element="tns:ListAllSales" />
+  </wsdl:message>
+  <wsdl:message name="ListAllSalesSoapOut">
+    <wsdl:part name="parameters" element="tns:ListAllSalesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListSalesSoapIn">
+    <wsdl:part name="parameters" element="tns:ListSales" />
+  </wsdl:message>
+  <wsdl:message name="ListSalesSoapOut">
+    <wsdl:part name="parameters" element="tns:ListSalesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChangeOpenedSaleSoapIn">
+    <wsdl:part name="parameters" element="tns:ChangeOpenedSale" />
+  </wsdl:message>
+  <wsdl:message name="ChangeOpenedSaleSoapOut">
+    <wsdl:part name="parameters" element="tns:ChangeOpenedSaleResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertSaleItemSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertSaleItem" />
+  </wsdl:message>
+  <wsdl:message name="InsertSaleItemSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertSaleItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="IncreaseQtdSaleItemSoapIn">
+    <wsdl:part name="parameters" element="tns:IncreaseQtdSaleItem" />
+  </wsdl:message>
+  <wsdl:message name="IncreaseQtdSaleItemSoapOut">
+    <wsdl:part name="parameters" element="tns:IncreaseQtdSaleItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertUserSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertUser" />
+  </wsdl:message>
+  <wsdl:message name="InsertUserSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUserSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateUser" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUserSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteUserSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteUser" />
+  </wsdl:message>
+  <wsdl:message name="DeleteUserSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckLoginSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckLogin" />
+  </wsdl:message>
+  <wsdl:message name="CheckLoginSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckLoginResponse" />
+  </wsdl:message>
   <wsdl:portType name="WebService1Soap">
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
@@ -148,6 +390,46 @@
     <wsdl:operation name="SaveSale">
       <wsdl:input message="tns:SaveSaleSoapIn" />
       <wsdl:output message="tns:SaveSaleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteSale">
+      <wsdl:input message="tns:DeleteSaleSoapIn" />
+      <wsdl:output message="tns:DeleteSaleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListAllSales">
+      <wsdl:input message="tns:ListAllSalesSoapIn" />
+      <wsdl:output message="tns:ListAllSalesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListSales">
+      <wsdl:input message="tns:ListSalesSoapIn" />
+      <wsdl:output message="tns:ListSalesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeOpenedSale">
+      <wsdl:input message="tns:ChangeOpenedSaleSoapIn" />
+      <wsdl:output message="tns:ChangeOpenedSaleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertSaleItem">
+      <wsdl:input message="tns:InsertSaleItemSoapIn" />
+      <wsdl:output message="tns:InsertSaleItemSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IncreaseQtdSaleItem">
+      <wsdl:input message="tns:IncreaseQtdSaleItemSoapIn" />
+      <wsdl:output message="tns:IncreaseQtdSaleItemSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertUser">
+      <wsdl:input message="tns:InsertUserSoapIn" />
+      <wsdl:output message="tns:InsertUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUser">
+      <wsdl:input message="tns:UpdateUserSoapIn" />
+      <wsdl:output message="tns:UpdateUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUser">
+      <wsdl:input message="tns:DeleteUserSoapIn" />
+      <wsdl:output message="tns:DeleteUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckLogin">
+      <wsdl:input message="tns:CheckLoginSoapIn" />
+      <wsdl:output message="tns:CheckLoginSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WebService1Soap" type="tns:WebService1Soap">
@@ -206,6 +488,96 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="DeleteSale">
+      <soap:operation soapAction="http://tempuri.org/DeleteSale" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListAllSales">
+      <soap:operation soapAction="http://tempuri.org/ListAllSales" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListSales">
+      <soap:operation soapAction="http://tempuri.org/ListSales" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeOpenedSale">
+      <soap:operation soapAction="http://tempuri.org/ChangeOpenedSale" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertSaleItem">
+      <soap:operation soapAction="http://tempuri.org/InsertSaleItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IncreaseQtdSaleItem">
+      <soap:operation soapAction="http://tempuri.org/IncreaseQtdSaleItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUser">
+      <soap:operation soapAction="http://tempuri.org/InsertUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUser">
+      <soap:operation soapAction="http://tempuri.org/UpdateUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUser">
+      <soap:operation soapAction="http://tempuri.org/DeleteUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckLogin">
+      <soap:operation soapAction="http://tempuri.org/CheckLogin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="WebService1Soap12" type="tns:WebService1Soap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -256,6 +628,96 @@
     </wsdl:operation>
     <wsdl:operation name="SaveSale">
       <soap12:operation soapAction="http://tempuri.org/SaveSale" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteSale">
+      <soap12:operation soapAction="http://tempuri.org/DeleteSale" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListAllSales">
+      <soap12:operation soapAction="http://tempuri.org/ListAllSales" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListSales">
+      <soap12:operation soapAction="http://tempuri.org/ListSales" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeOpenedSale">
+      <soap12:operation soapAction="http://tempuri.org/ChangeOpenedSale" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertSaleItem">
+      <soap12:operation soapAction="http://tempuri.org/InsertSaleItem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IncreaseQtdSaleItem">
+      <soap12:operation soapAction="http://tempuri.org/IncreaseQtdSaleItem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUser">
+      <soap12:operation soapAction="http://tempuri.org/InsertUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUser">
+      <soap12:operation soapAction="http://tempuri.org/UpdateUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUser">
+      <soap12:operation soapAction="http://tempuri.org/DeleteUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckLogin">
+      <soap12:operation soapAction="http://tempuri.org/CheckLogin" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

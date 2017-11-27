@@ -41,6 +41,26 @@ namespace BodegaAdmin.localhost {
         
         private System.Threading.SendOrPostCallback SaveSaleOperationCompleted;
         
+        private System.Threading.SendOrPostCallback DeleteSaleOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback ListAllSalesOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback ListSalesOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback ChangeOpenedSaleOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback InsertSaleItemOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback IncreaseQtdSaleItemOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback InsertUserOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback UpdateUserOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback DeleteUserOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback CheckLoginOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -96,6 +116,36 @@ namespace BodegaAdmin.localhost {
         
         /// <remarks/>
         public event SaveSaleCompletedEventHandler SaveSaleCompleted;
+        
+        /// <remarks/>
+        public event DeleteSaleCompletedEventHandler DeleteSaleCompleted;
+        
+        /// <remarks/>
+        public event ListAllSalesCompletedEventHandler ListAllSalesCompleted;
+        
+        /// <remarks/>
+        public event ListSalesCompletedEventHandler ListSalesCompleted;
+        
+        /// <remarks/>
+        public event ChangeOpenedSaleCompletedEventHandler ChangeOpenedSaleCompleted;
+        
+        /// <remarks/>
+        public event InsertSaleItemCompletedEventHandler InsertSaleItemCompleted;
+        
+        /// <remarks/>
+        public event IncreaseQtdSaleItemCompletedEventHandler IncreaseQtdSaleItemCompleted;
+        
+        /// <remarks/>
+        public event InsertUserCompletedEventHandler InsertUserCompleted;
+        
+        /// <remarks/>
+        public event UpdateUserCompletedEventHandler UpdateUserCompleted;
+        
+        /// <remarks/>
+        public event DeleteUserCompletedEventHandler DeleteUserCompleted;
+        
+        /// <remarks/>
+        public event CheckLoginCompletedEventHandler CheckLoginCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/HelloWorld", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -240,28 +290,324 @@ namespace BodegaAdmin.localhost {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/SaveSale", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public bool SaveSale() {
-            object[] results = this.Invoke("SaveSale", new object[0]);
-            return ((bool)(results[0]));
+        public Sales SaveSale(Sales sale) {
+            object[] results = this.Invoke("SaveSale", new object[] {
+                        sale});
+            return ((Sales)(results[0]));
         }
         
         /// <remarks/>
-        public void SaveSaleAsync() {
-            this.SaveSaleAsync(null);
+        public void SaveSaleAsync(Sales sale) {
+            this.SaveSaleAsync(sale, null);
         }
         
         /// <remarks/>
-        public void SaveSaleAsync(object userState) {
+        public void SaveSaleAsync(Sales sale, object userState) {
             if ((this.SaveSaleOperationCompleted == null)) {
                 this.SaveSaleOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSaveSaleOperationCompleted);
             }
-            this.InvokeAsync("SaveSale", new object[0], this.SaveSaleOperationCompleted, userState);
+            this.InvokeAsync("SaveSale", new object[] {
+                        sale}, this.SaveSaleOperationCompleted, userState);
         }
         
         private void OnSaveSaleOperationCompleted(object arg) {
             if ((this.SaveSaleCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.SaveSaleCompleted(this, new SaveSaleCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/DeleteSale", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool DeleteSale(Sales sale) {
+            object[] results = this.Invoke("DeleteSale", new object[] {
+                        sale});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void DeleteSaleAsync(Sales sale) {
+            this.DeleteSaleAsync(sale, null);
+        }
+        
+        /// <remarks/>
+        public void DeleteSaleAsync(Sales sale, object userState) {
+            if ((this.DeleteSaleOperationCompleted == null)) {
+                this.DeleteSaleOperationCompleted = new System.Threading.SendOrPostCallback(this.OnDeleteSaleOperationCompleted);
+            }
+            this.InvokeAsync("DeleteSale", new object[] {
+                        sale}, this.DeleteSaleOperationCompleted, userState);
+        }
+        
+        private void OnDeleteSaleOperationCompleted(object arg) {
+            if ((this.DeleteSaleCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.DeleteSaleCompleted(this, new DeleteSaleCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ListAllSales", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public Sales[] ListAllSales(User user) {
+            object[] results = this.Invoke("ListAllSales", new object[] {
+                        user});
+            return ((Sales[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ListAllSalesAsync(User user) {
+            this.ListAllSalesAsync(user, null);
+        }
+        
+        /// <remarks/>
+        public void ListAllSalesAsync(User user, object userState) {
+            if ((this.ListAllSalesOperationCompleted == null)) {
+                this.ListAllSalesOperationCompleted = new System.Threading.SendOrPostCallback(this.OnListAllSalesOperationCompleted);
+            }
+            this.InvokeAsync("ListAllSales", new object[] {
+                        user}, this.ListAllSalesOperationCompleted, userState);
+        }
+        
+        private void OnListAllSalesOperationCompleted(object arg) {
+            if ((this.ListAllSalesCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ListAllSalesCompleted(this, new ListAllSalesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ListSales", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public Sales[] ListSales(User user, bool open) {
+            object[] results = this.Invoke("ListSales", new object[] {
+                        user,
+                        open});
+            return ((Sales[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ListSalesAsync(User user, bool open) {
+            this.ListSalesAsync(user, open, null);
+        }
+        
+        /// <remarks/>
+        public void ListSalesAsync(User user, bool open, object userState) {
+            if ((this.ListSalesOperationCompleted == null)) {
+                this.ListSalesOperationCompleted = new System.Threading.SendOrPostCallback(this.OnListSalesOperationCompleted);
+            }
+            this.InvokeAsync("ListSales", new object[] {
+                        user,
+                        open}, this.ListSalesOperationCompleted, userState);
+        }
+        
+        private void OnListSalesOperationCompleted(object arg) {
+            if ((this.ListSalesCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ListSalesCompleted(this, new ListSalesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ChangeOpenedSale", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool ChangeOpenedSale(Sales sale, bool open) {
+            object[] results = this.Invoke("ChangeOpenedSale", new object[] {
+                        sale,
+                        open});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ChangeOpenedSaleAsync(Sales sale, bool open) {
+            this.ChangeOpenedSaleAsync(sale, open, null);
+        }
+        
+        /// <remarks/>
+        public void ChangeOpenedSaleAsync(Sales sale, bool open, object userState) {
+            if ((this.ChangeOpenedSaleOperationCompleted == null)) {
+                this.ChangeOpenedSaleOperationCompleted = new System.Threading.SendOrPostCallback(this.OnChangeOpenedSaleOperationCompleted);
+            }
+            this.InvokeAsync("ChangeOpenedSale", new object[] {
+                        sale,
+                        open}, this.ChangeOpenedSaleOperationCompleted, userState);
+        }
+        
+        private void OnChangeOpenedSaleOperationCompleted(object arg) {
+            if ((this.ChangeOpenedSaleCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ChangeOpenedSaleCompleted(this, new ChangeOpenedSaleCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/InsertSaleItem", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool InsertSaleItem(SaleItems item) {
+            object[] results = this.Invoke("InsertSaleItem", new object[] {
+                        item});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void InsertSaleItemAsync(SaleItems item) {
+            this.InsertSaleItemAsync(item, null);
+        }
+        
+        /// <remarks/>
+        public void InsertSaleItemAsync(SaleItems item, object userState) {
+            if ((this.InsertSaleItemOperationCompleted == null)) {
+                this.InsertSaleItemOperationCompleted = new System.Threading.SendOrPostCallback(this.OnInsertSaleItemOperationCompleted);
+            }
+            this.InvokeAsync("InsertSaleItem", new object[] {
+                        item}, this.InsertSaleItemOperationCompleted, userState);
+        }
+        
+        private void OnInsertSaleItemOperationCompleted(object arg) {
+            if ((this.InsertSaleItemCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.InsertSaleItemCompleted(this, new InsertSaleItemCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IncreaseQtdSaleItem", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool IncreaseQtdSaleItem(SaleItems item) {
+            object[] results = this.Invoke("IncreaseQtdSaleItem", new object[] {
+                        item});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void IncreaseQtdSaleItemAsync(SaleItems item) {
+            this.IncreaseQtdSaleItemAsync(item, null);
+        }
+        
+        /// <remarks/>
+        public void IncreaseQtdSaleItemAsync(SaleItems item, object userState) {
+            if ((this.IncreaseQtdSaleItemOperationCompleted == null)) {
+                this.IncreaseQtdSaleItemOperationCompleted = new System.Threading.SendOrPostCallback(this.OnIncreaseQtdSaleItemOperationCompleted);
+            }
+            this.InvokeAsync("IncreaseQtdSaleItem", new object[] {
+                        item}, this.IncreaseQtdSaleItemOperationCompleted, userState);
+        }
+        
+        private void OnIncreaseQtdSaleItemOperationCompleted(object arg) {
+            if ((this.IncreaseQtdSaleItemCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.IncreaseQtdSaleItemCompleted(this, new IncreaseQtdSaleItemCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/InsertUser", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool InsertUser(User user) {
+            object[] results = this.Invoke("InsertUser", new object[] {
+                        user});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void InsertUserAsync(User user) {
+            this.InsertUserAsync(user, null);
+        }
+        
+        /// <remarks/>
+        public void InsertUserAsync(User user, object userState) {
+            if ((this.InsertUserOperationCompleted == null)) {
+                this.InsertUserOperationCompleted = new System.Threading.SendOrPostCallback(this.OnInsertUserOperationCompleted);
+            }
+            this.InvokeAsync("InsertUser", new object[] {
+                        user}, this.InsertUserOperationCompleted, userState);
+        }
+        
+        private void OnInsertUserOperationCompleted(object arg) {
+            if ((this.InsertUserCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.InsertUserCompleted(this, new InsertUserCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/UpdateUser", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool UpdateUser(User user) {
+            object[] results = this.Invoke("UpdateUser", new object[] {
+                        user});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void UpdateUserAsync(User user) {
+            this.UpdateUserAsync(user, null);
+        }
+        
+        /// <remarks/>
+        public void UpdateUserAsync(User user, object userState) {
+            if ((this.UpdateUserOperationCompleted == null)) {
+                this.UpdateUserOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdateUserOperationCompleted);
+            }
+            this.InvokeAsync("UpdateUser", new object[] {
+                        user}, this.UpdateUserOperationCompleted, userState);
+        }
+        
+        private void OnUpdateUserOperationCompleted(object arg) {
+            if ((this.UpdateUserCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UpdateUserCompleted(this, new UpdateUserCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/DeleteUser", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool DeleteUser(User user) {
+            object[] results = this.Invoke("DeleteUser", new object[] {
+                        user});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void DeleteUserAsync(User user) {
+            this.DeleteUserAsync(user, null);
+        }
+        
+        /// <remarks/>
+        public void DeleteUserAsync(User user, object userState) {
+            if ((this.DeleteUserOperationCompleted == null)) {
+                this.DeleteUserOperationCompleted = new System.Threading.SendOrPostCallback(this.OnDeleteUserOperationCompleted);
+            }
+            this.InvokeAsync("DeleteUser", new object[] {
+                        user}, this.DeleteUserOperationCompleted, userState);
+        }
+        
+        private void OnDeleteUserOperationCompleted(object arg) {
+            if ((this.DeleteUserCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.DeleteUserCompleted(this, new DeleteUserCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/CheckLogin", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public User CheckLogin(User user) {
+            object[] results = this.Invoke("CheckLogin", new object[] {
+                        user});
+            return ((User)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void CheckLoginAsync(User user) {
+            this.CheckLoginAsync(user, null);
+        }
+        
+        /// <remarks/>
+        public void CheckLoginAsync(User user, object userState) {
+            if ((this.CheckLoginOperationCompleted == null)) {
+                this.CheckLoginOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCheckLoginOperationCompleted);
+            }
+            this.InvokeAsync("CheckLogin", new object[] {
+                        user}, this.CheckLoginOperationCompleted, userState);
+        }
+        
+        private void OnCheckLoginOperationCompleted(object arg) {
+            if ((this.CheckLoginCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.CheckLoginCompleted(this, new CheckLoginCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -325,6 +671,201 @@ namespace BodegaAdmin.localhost {
             }
             set {
                 this.priceField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class SaleItems {
+        
+        private int qtdField;
+        
+        private double unitPriceField;
+        
+        private Products productField;
+        
+        private Sales saleField;
+        
+        /// <remarks/>
+        public int Qtd {
+            get {
+                return this.qtdField;
+            }
+            set {
+                this.qtdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public double UnitPrice {
+            get {
+                return this.unitPriceField;
+            }
+            set {
+                this.unitPriceField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public Products Product {
+            get {
+                return this.productField;
+            }
+            set {
+                this.productField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public Sales Sale {
+            get {
+                return this.saleField;
+            }
+            set {
+                this.saleField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class Sales {
+        
+        private long idField;
+        
+        private bool openField;
+        
+        private System.DateTime openedDateTimeField;
+        
+        private System.DateTime closedDateTimeField;
+        
+        private User userField;
+        
+        private SaleItems[] listSaleItemsField;
+        
+        /// <remarks/>
+        public long Id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool Open {
+            get {
+                return this.openField;
+            }
+            set {
+                this.openField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime OpenedDateTime {
+            get {
+                return this.openedDateTimeField;
+            }
+            set {
+                this.openedDateTimeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime ClosedDateTime {
+            get {
+                return this.closedDateTimeField;
+            }
+            set {
+                this.closedDateTimeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public User User {
+            get {
+                return this.userField;
+            }
+            set {
+                this.userField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public SaleItems[] ListSaleItems {
+            get {
+                return this.listSaleItemsField;
+            }
+            set {
+                this.listSaleItemsField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class User {
+        
+        private long idField;
+        
+        private string loginField;
+        
+        private string passwordField;
+        
+        private int permissionField;
+        
+        /// <remarks/>
+        public long Id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Login {
+            get {
+                return this.loginField;
+            }
+            set {
+                this.loginField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Password {
+            get {
+                return this.passwordField;
+            }
+            set {
+                this.passwordField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int Permission {
+            get {
+                return this.permissionField;
+            }
+            set {
+                this.permissionField = value;
             }
         }
     }
@@ -477,10 +1018,270 @@ namespace BodegaAdmin.localhost {
         }
         
         /// <remarks/>
+        public Sales Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((Sales)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    public delegate void DeleteSaleCompletedEventHandler(object sender, DeleteSaleCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class DeleteSaleCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal DeleteSaleCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
         public bool Result {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    public delegate void ListAllSalesCompletedEventHandler(object sender, ListAllSalesCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ListAllSalesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ListAllSalesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public Sales[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((Sales[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    public delegate void ListSalesCompletedEventHandler(object sender, ListSalesCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ListSalesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ListSalesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public Sales[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((Sales[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    public delegate void ChangeOpenedSaleCompletedEventHandler(object sender, ChangeOpenedSaleCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ChangeOpenedSaleCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ChangeOpenedSaleCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    public delegate void InsertSaleItemCompletedEventHandler(object sender, InsertSaleItemCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class InsertSaleItemCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal InsertSaleItemCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    public delegate void IncreaseQtdSaleItemCompletedEventHandler(object sender, IncreaseQtdSaleItemCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class IncreaseQtdSaleItemCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal IncreaseQtdSaleItemCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    public delegate void InsertUserCompletedEventHandler(object sender, InsertUserCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class InsertUserCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal InsertUserCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    public delegate void UpdateUserCompletedEventHandler(object sender, UpdateUserCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class UpdateUserCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal UpdateUserCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    public delegate void DeleteUserCompletedEventHandler(object sender, DeleteUserCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class DeleteUserCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal DeleteUserCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    public delegate void CheckLoginCompletedEventHandler(object sender, CheckLoginCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class CheckLoginCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal CheckLoginCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public User Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((User)(this.results[0]));
             }
         }
     }

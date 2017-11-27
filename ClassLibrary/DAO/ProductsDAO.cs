@@ -206,7 +206,7 @@ namespace ClassLibrary.DAO
             Int32 count = 0;
             try
             {
-                string sql = "SELECT COUNT(*) AS count FROM negocio.produtos WHERE nome = :name";
+                string sql = "SELECT COUNT(id) AS count FROM negocio.produtos WHERE nome = :name";
                 NpgsqlCommand cmd = new NpgsqlCommand(sql, connection);
                 
                 cmd.Parameters.Add(new NpgsqlParameter("name", product.Name));

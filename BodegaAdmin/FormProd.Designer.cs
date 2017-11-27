@@ -64,9 +64,11 @@
             // edtPriceProd
             // 
             this.edtPriceProd.Location = new System.Drawing.Point(53, 84);
+            this.edtPriceProd.MaxLength = 45;
             this.edtPriceProd.Name = "edtPriceProd";
             this.edtPriceProd.Size = new System.Drawing.Size(100, 20);
             this.edtPriceProd.TabIndex = 3;
+            this.edtPriceProd.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.EdtPriceProd_KeyPress);
             // 
             // btnConfirProd
             // 

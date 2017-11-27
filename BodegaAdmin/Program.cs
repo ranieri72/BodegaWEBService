@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using BodegaAdmin.localhost;
+using System;
 using System.Windows.Forms;
 
 namespace BodegaAdmin
 {
     static class Program
     {
+        public static User user;
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -16,7 +16,7 @@ namespace BodegaAdmin
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormMain());
+            Application.Run(new FormLogin());
         }
     }
 }
