@@ -73,6 +73,13 @@ namespace BodegaWeb
         }
 
         [WebMethod]
+        public Sales SelectCompleteSale(Sales sale)
+        {
+            SalesBusiness business = new SalesBusiness();
+            return business.SelectCompleteSale(sale);
+        }
+
+        [WebMethod]
         public List<Sales> ListAllSales(User user)
         {
             SalesBusiness business = new SalesBusiness();
@@ -103,10 +110,24 @@ namespace BodegaWeb
         }
 
         [WebMethod]
+        public bool DeleteSaleItem(SaleItems item)
+        {
+            SalesBusiness business = new SalesBusiness();
+            return business.DeleteSaleItem(item);
+        }
+
+        [WebMethod]
         public bool IncreaseQtdSaleItem(SaleItems item)
         {
             SalesBusiness business = new SalesBusiness();
             return business.IncreaseQtdSaleItem(item);
+        }
+
+        [WebMethod]
+        public List<SaleItems> ListSaleItems(Sales sale)
+        {
+            SalesBusiness business = new SalesBusiness();
+            return business.ListSaleItems(sale);
         }
 
         // User

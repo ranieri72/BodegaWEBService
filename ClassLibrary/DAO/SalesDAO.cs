@@ -72,9 +72,11 @@ namespace ClassLibrary.DAO
         public Sales SelectSale(Sales sale)
         {
             NpgsqlConnection connection = Database.openConnection();
+            DateTime date;
+            TimeSpan time;
             try
             {
-                string sql = "SELECT id, aberto, dataabertura, datafechamento, iduser FROM negocio.vendas WHERE id = @id";
+                string sql = "SELECT id, aberto, dataabertura, datafechamento, horaabertura, horafechamento, iduser FROM negocio.vendas WHERE id = @id";
                 NpgsqlCommand cmd = new NpgsqlCommand(sql, connection);
 
                 cmd.Parameters.Add(new NpgsqlParameter("@id", sale.Id));
@@ -82,21 +84,29 @@ namespace ClassLibrary.DAO
                 NpgsqlDataReader dataReader = cmd.ExecuteReader();
 
                 if (dataReader.Read())
-                {
+                {   
                     User user = new User
                     {
                         Id = dataReader.GetInt32(dataReader.GetOrdinal("iduser"))
                     };
+                    date = new DateTime();
+                    time = new TimeSpan();
+                    date = dataReader.GetDateTime(dataReader.GetOrdinal("dataabertura"));
+                    time = dataReader.GetTimeSpan(dataReader.GetOrdinal("horaabertura"));
                     sale = new Sales
                     {
                         Id = dataReader.GetInt32(dataReader.GetOrdinal("id")),
                         Open = dataReader.GetBoolean(dataReader.GetOrdinal("aberto")),
-                        OpenedDateTime = dataReader.GetDateTime(dataReader.GetOrdinal("dataabertura")),
+                        OpenedDateTime = date + time,
                         User = user
                     };
                     if (!sale.Open)
                     {
-                        sale.ClosedDateTime = dataReader.GetDateTime(dataReader.GetOrdinal("datafechamento"));
+                        date = new DateTime();
+                        time = new TimeSpan();
+                        date = dataReader.GetDateTime(dataReader.GetOrdinal("datafechamento"));
+                        time = dataReader.GetTimeSpan(dataReader.GetOrdinal("horafechamento"));
+                        sale.ClosedDateTime = date + time;
                     }
                 }
                 else
@@ -161,9 +171,11 @@ namespace ClassLibrary.DAO
             List<Sales> listSales;
             Sales sale;
             User user;
+            DateTime date;
+            TimeSpan time;
             try
             {
-                string sql = "SELECT id, aberto, dataabertura, datafechamento, iduser FROM negocio.vendas ORDER BY datafechamento DESC";
+                string sql = "SELECT id, aberto, dataabertura, datafechamento, horaabertura, horafechamento, iduser FROM negocio.vendas ORDER BY datafechamento DESC";
                 NpgsqlCommand cmd = new NpgsqlCommand(sql, connection);
                 NpgsqlDataReader dataReader = cmd.ExecuteReader();
 
@@ -174,16 +186,24 @@ namespace ClassLibrary.DAO
                     {
                         Id = dataReader.GetInt32(dataReader.GetOrdinal("iduser"))
                     };
+                    date = new DateTime();
+                    time = new TimeSpan();
+                    date = dataReader.GetDateTime(dataReader.GetOrdinal("dataabertura"));
+                    time = dataReader.GetTimeSpan(dataReader.GetOrdinal("horaabertura"));
                     sale = new Sales
                     {
                         Id = dataReader.GetInt32(dataReader.GetOrdinal("id")),
                         Open = dataReader.GetBoolean(dataReader.GetOrdinal("aberto")),
-                        OpenedDateTime = dataReader.GetDateTime(dataReader.GetOrdinal("dataabertura")),
+                        OpenedDateTime = date + time,
                         User = user
                     };
                     if (!sale.Open)
                     {
-                        sale.ClosedDateTime = dataReader.GetDateTime(dataReader.GetOrdinal("datafechamento"));
+                        date = new DateTime();
+                        time = new TimeSpan();
+                        date = dataReader.GetDateTime(dataReader.GetOrdinal("datafechamento"));
+                        time = dataReader.GetTimeSpan(dataReader.GetOrdinal("horafechamento"));
+                        sale.ClosedDateTime = date + time;
                     }
                     listSales.Add(sale);
                 }
@@ -209,9 +229,11 @@ namespace ClassLibrary.DAO
             NpgsqlConnection connection = Database.openConnection();
             List<Sales> listSales;
             Sales sale;
+            DateTime date;
+            TimeSpan time;
             try
             {
-                string sql = "SELECT id, aberto, dataabertura, datafechamento, iduser FROM negocio.vendas WHERE iduser = @iduser ORDER BY datafechamento DESC";
+                string sql = "SELECT id, aberto, dataabertura, datafechamento, horaabertura, horafechamento, iduser FROM negocio.vendas WHERE iduser = @iduser ORDER BY datafechamento DESC";
                 NpgsqlCommand cmd = new NpgsqlCommand(sql, connection);
 
                 cmd.Parameters.Add(new NpgsqlParameter("@idUser", user.Id));
@@ -221,16 +243,24 @@ namespace ClassLibrary.DAO
                 listSales = new List<Sales>();
                 while (dataReader.Read())
                 {
+                    date = new DateTime();
+                    time = new TimeSpan();
+                    date = dataReader.GetDateTime(dataReader.GetOrdinal("dataabertura"));
+                    time = dataReader.GetTimeSpan(dataReader.GetOrdinal("horaabertura"));
                     sale = new Sales
                     {
                         Id = dataReader.GetInt32(dataReader.GetOrdinal("id")),
                         Open = dataReader.GetBoolean(dataReader.GetOrdinal("aberto")),
-                        OpenedDateTime = dataReader.GetDateTime(dataReader.GetOrdinal("dataabertura")),
+                        OpenedDateTime = date + time,
                         User = user
                     };
                     if (!sale.Open)
                     {
-                        sale.ClosedDateTime = dataReader.GetDateTime(dataReader.GetOrdinal("datafechamento"));
+                        date = new DateTime();
+                        time = new TimeSpan();
+                        date = dataReader.GetDateTime(dataReader.GetOrdinal("datafechamento"));
+                        time = dataReader.GetTimeSpan(dataReader.GetOrdinal("horafechamento"));
+                        sale.ClosedDateTime = date + time;
                     }
                     listSales.Add(sale);
                 }
@@ -257,9 +287,11 @@ namespace ClassLibrary.DAO
             List<Sales> listSales;
             Sales sale;
             User user;
+            DateTime date;
+            TimeSpan time;
             try
             {
-                string sql = "SELECT id, aberto, dataabertura, datafechamento, iduser FROM negocio.vendas WHERE aberto = :opened ORDER BY datafechamento DESC";
+                string sql = "SELECT id, aberto, dataabertura, datafechamento, horaabertura, horafechamento, iduser FROM negocio.vendas WHERE aberto = :opened ORDER BY datafechamento DESC";
                 NpgsqlCommand cmd = new NpgsqlCommand(sql, connection);
                 cmd.Parameters.Add(new NpgsqlParameter("opened", open));
                 NpgsqlDataReader dataReader = cmd.ExecuteReader();
@@ -271,16 +303,24 @@ namespace ClassLibrary.DAO
                     {
                         Id = dataReader.GetInt32(dataReader.GetOrdinal("iduser"))
                     };
+                    date = new DateTime();
+                    time = new TimeSpan();
+                    date = dataReader.GetDateTime(dataReader.GetOrdinal("dataabertura"));
+                    time = dataReader.GetTimeSpan(dataReader.GetOrdinal("horaabertura"));
                     sale = new Sales
                     {
                         Id = dataReader.GetInt32(dataReader.GetOrdinal("id")),
                         Open = dataReader.GetBoolean(dataReader.GetOrdinal("aberto")),
-                        OpenedDateTime = dataReader.GetDateTime(dataReader.GetOrdinal("dataabertura")),
+                        OpenedDateTime = date + time,
                         User = user
                     };
-                    if (!open)
+                    if (!sale.Open)
                     {
-                        sale.ClosedDateTime = dataReader.GetDateTime(dataReader.GetOrdinal("datafechamento"));
+                        date = new DateTime();
+                        time = new TimeSpan();
+                        date = dataReader.GetDateTime(dataReader.GetOrdinal("datafechamento"));
+                        time = dataReader.GetTimeSpan(dataReader.GetOrdinal("horafechamento"));
+                        sale.ClosedDateTime = date + time;
                     }
                     listSales.Add(sale);
                 }
@@ -306,9 +346,11 @@ namespace ClassLibrary.DAO
             NpgsqlConnection connection = Database.openConnection();
             List<Sales> listSales;
             Sales sale;
+            DateTime date;
+            TimeSpan time;
             try
             {
-                string sql = "SELECT id, aberto, dataabertura, datafechamento, iduser FROM negocio.vendas WHERE aberto = :opened AND iduser = @iduser ORDER BY datafechamento DESC";
+                string sql = "SELECT id, aberto, dataabertura, datafechamento, horaabertura, horafechamento, iduser FROM negocio.vendas WHERE aberto = :opened AND iduser = @iduser ORDER BY datafechamento DESC";
                 NpgsqlCommand cmd = new NpgsqlCommand(sql, connection);
 
                 cmd.Parameters.Add(new NpgsqlParameter("@idUser", user.Id));
@@ -318,17 +360,25 @@ namespace ClassLibrary.DAO
 
                 listSales = new List<Sales>();
                 while (dataReader.Read())
-                {   
+                {
+                    date = new DateTime();
+                    time = new TimeSpan();
+                    date = dataReader.GetDateTime(dataReader.GetOrdinal("dataabertura"));
+                    time = dataReader.GetTimeSpan(dataReader.GetOrdinal("horaabertura"));
                     sale = new Sales
                     {
                         Id = dataReader.GetInt32(dataReader.GetOrdinal("id")),
                         Open = dataReader.GetBoolean(dataReader.GetOrdinal("aberto")),
-                        OpenedDateTime = dataReader.GetDateTime(dataReader.GetOrdinal("dataabertura")),
+                        OpenedDateTime = date + time,
                         User = user
                     };
-                    if (!open)
+                    if (!sale.Open)
                     {
-                        sale.ClosedDateTime = dataReader.GetDateTime(dataReader.GetOrdinal("datafechamento"));
+                        date = new DateTime();
+                        time = new TimeSpan();
+                        date = dataReader.GetDateTime(dataReader.GetOrdinal("datafechamento"));
+                        time = dataReader.GetTimeSpan(dataReader.GetOrdinal("horafechamento"));
+                        sale.ClosedDateTime = date + time;
                     }
                     listSales.Add(sale);
                 }
@@ -354,12 +404,23 @@ namespace ClassLibrary.DAO
             NpgsqlConnection connection = Database.openConnection();
             try
             {
-                string sql = "UPDATE negocio.vendas SET aberto = :opened WHERE id = @id";
+                string sql;
+                if (open)
+                {
+                    sql = "UPDATE negocio.vendas SET aberto = :opened WHERE id = @id";
+                }
+                else
+                {
+                    sql = "UPDATE negocio.vendas SET aberto = :opened, datafechamento = :closedDateTime, horafechamento = :closedDateTime WHERE id = @id";
+                }
                 NpgsqlCommand cmd = new NpgsqlCommand(sql, connection);
 
                 cmd.Parameters.Add(new NpgsqlParameter("@id", sale.Id));
                 cmd.Parameters.Add(new NpgsqlParameter("opened", open));
-
+                if (!open)
+                {
+                    cmd.Parameters.Add(new NpgsqlParameter("closedDateTime", sale.ClosedDateTime));
+                }
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
             }

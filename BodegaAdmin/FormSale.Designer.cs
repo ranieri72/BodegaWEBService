@@ -30,17 +30,17 @@
         {
             this.listViewSaleItems = new System.Windows.Forms.ListView();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lbIdSale = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lbOpenedSale = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.lbUserSale = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
+            this.lbOpenDateSale = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
+            this.lbCloseDateSale = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
+            this.lbTotalSale = new System.Windows.Forms.Label();
             this.btnDeleteSaleItem = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -61,14 +61,14 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "ID";
             // 
-            // label2
+            // lbIdSale
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 39);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(25, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "115";
+            this.lbIdSale.AutoSize = true;
+            this.lbIdSale.Location = new System.Drawing.Point(12, 39);
+            this.lbIdSale.Name = "lbIdSale";
+            this.lbIdSale.Size = new System.Drawing.Size(25, 13);
+            this.lbIdSale.TabIndex = 2;
+            this.lbIdSale.Text = "115";
             // 
             // label3
             // 
@@ -79,14 +79,14 @@
             this.label3.TabIndex = 3;
             this.label3.Text = "Estado";
             // 
-            // label4
+            // lbOpenedSale
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(91, 39);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(38, 13);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "Aberta";
+            this.lbOpenedSale.AutoSize = true;
+            this.lbOpenedSale.Location = new System.Drawing.Point(91, 39);
+            this.lbOpenedSale.Name = "lbOpenedSale";
+            this.lbOpenedSale.Size = new System.Drawing.Size(38, 13);
+            this.lbOpenedSale.TabIndex = 4;
+            this.lbOpenedSale.Text = "Aberta";
             // 
             // label5
             // 
@@ -97,14 +97,14 @@
             this.label5.TabIndex = 5;
             this.label5.Text = "Usuário";
             // 
-            // label6
+            // lbUserSale
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(190, 39);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(68, 13);
-            this.label6.TabIndex = 6;
-            this.label6.Text = "Fulano de tal";
+            this.lbUserSale.AutoSize = true;
+            this.lbUserSale.Location = new System.Drawing.Point(190, 39);
+            this.lbUserSale.Name = "lbUserSale";
+            this.lbUserSale.Size = new System.Drawing.Size(68, 13);
+            this.lbUserSale.TabIndex = 6;
+            this.lbUserSale.Text = "Fulano de tal";
             // 
             // label7
             // 
@@ -115,14 +115,14 @@
             this.label7.TabIndex = 7;
             this.label7.Text = "Data de Abertura";
             // 
-            // label8
+            // lbOpenDateSale
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(316, 39);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(83, 13);
-            this.label8.TabIndex = 8;
-            this.label8.Text = "15/11/17 21:57";
+            this.lbOpenDateSale.AutoSize = true;
+            this.lbOpenDateSale.Location = new System.Drawing.Point(316, 39);
+            this.lbOpenDateSale.Name = "lbOpenDateSale";
+            this.lbOpenDateSale.Size = new System.Drawing.Size(83, 13);
+            this.lbOpenDateSale.TabIndex = 8;
+            this.lbOpenDateSale.Text = "15/11/17 21:57";
             // 
             // label9
             // 
@@ -133,14 +133,14 @@
             this.label9.TabIndex = 9;
             this.label9.Text = "Data de Encerramento";
             // 
-            // label10
+            // lbCloseDateSale
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(458, 39);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(83, 13);
-            this.label10.TabIndex = 10;
-            this.label10.Text = "15/11/17 23:35";
+            this.lbCloseDateSale.AutoSize = true;
+            this.lbCloseDateSale.Location = new System.Drawing.Point(458, 39);
+            this.lbCloseDateSale.Name = "lbCloseDateSale";
+            this.lbCloseDateSale.Size = new System.Drawing.Size(83, 13);
+            this.lbCloseDateSale.TabIndex = 10;
+            this.lbCloseDateSale.Text = "15/11/17 23:35";
             // 
             // label11
             // 
@@ -151,14 +151,14 @@
             this.label11.TabIndex = 11;
             this.label11.Text = "Total";
             // 
-            // label12
+            // lbTotalSale
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(632, 39);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(51, 13);
-            this.label12.TabIndex = 12;
-            this.label12.Text = "R$ 95,15";
+            this.lbTotalSale.AutoSize = true;
+            this.lbTotalSale.Location = new System.Drawing.Point(632, 39);
+            this.lbTotalSale.Name = "lbTotalSale";
+            this.lbTotalSale.Size = new System.Drawing.Size(51, 13);
+            this.lbTotalSale.TabIndex = 12;
+            this.lbTotalSale.Text = "R$ 95,15";
             // 
             // btnDeleteSaleItem
             // 
@@ -176,17 +176,17 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(695, 515);
             this.Controls.Add(this.btnDeleteSaleItem);
-            this.Controls.Add(this.label12);
+            this.Controls.Add(this.lbTotalSale);
             this.Controls.Add(this.label11);
-            this.Controls.Add(this.label10);
+            this.Controls.Add(this.lbCloseDateSale);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.label8);
+            this.Controls.Add(this.lbOpenDateSale);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
+            this.Controls.Add(this.lbUserSale);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
+            this.Controls.Add(this.lbOpenedSale);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lbIdSale);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.listViewSaleItems);
             this.Name = "FormSale";
@@ -200,17 +200,17 @@
 
         private System.Windows.Forms.ListView listViewSaleItems;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lbIdSale;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lbOpenedSale;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lbUserSale;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lbOpenDateSale;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label lbCloseDateSale;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label lbTotalSale;
         private System.Windows.Forms.Button btnDeleteSaleItem;
     }
 }

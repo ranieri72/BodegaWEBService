@@ -71,6 +71,42 @@ namespace ClassLibrary.Business
             }
         }
 
+        public Sales SelectCompleteSale(Sales sale)
+        {
+            try
+            {
+                SalesDAO dao = new SalesDAO();
+                SaleItemsDAO itemsDAO = new SaleItemsDAO();
+                UserDAO userDAO = new UserDAO();
+                User u;
+
+                if (sale != null)
+                {
+                    u = userDAO.CheckLogin(sale.User);
+                    if (u == null)
+                    {
+                        return null;
+                    }
+                    if (u.Permission != User.admin)
+                    {
+                        if (!dao.CheckUserPermission(sale))
+                        {
+                            return null;
+                        }
+                    }
+                    sale = dao.SelectSale(sale);
+                    sale.User = u;
+                    sale.ListSaleItems = ListSaleItems(sale);
+                    return sale;
+                }
+                return null;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
         public List<Sales> ListSales(User user)
         {
             try
@@ -157,6 +193,10 @@ namespace ClassLibrary.Business
                             return false;
                         }
                     }
+                    if (!open)
+                    {
+                        sale.ClosedDateTime = DateTime.Now;
+                    }
                     dao.ChangeOpenedSale(sale, open);
                     return true;
                 }
@@ -214,6 +254,36 @@ namespace ClassLibrary.Business
             }
         }
 
+        public bool DeleteSaleItem(SaleItems item)
+        {
+            try
+            {
+                SalesDAO salesDAO = new SalesDAO();
+                SaleItemsDAO itemsDAO = new SaleItemsDAO();
+                ProductsDAO productsDAO = new ProductsDAO();
+                UserDAO userDAO = new UserDAO();
+
+                if (item != null)
+                {
+                    if (userDAO.CheckLogin(item.Sale.User) == null)
+                    {
+                        return false;
+                    }
+                    if (!salesDAO.CheckUserPermission(item.Sale))
+                    {
+                        return false;
+                    }
+                    itemsDAO.DeleteSaleItem(item);
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
         public bool IncreaseQtdSaleItem(SaleItems item)
         {
             try
@@ -250,6 +320,26 @@ namespace ClassLibrary.Business
             {
                 throw new Exception(e.Message);
             }
+        }
+
+        public List<SaleItems> ListSaleItems(Sales sale)
+        {
+            SalesDAO salesDAO = new SalesDAO();
+            SaleItemsDAO itemsDAO = new SaleItemsDAO();
+            UserDAO userDAO = new UserDAO();
+            if (sale != null)
+            {
+                if (userDAO.CheckLogin(sale.User) == null)
+                {
+                    return null;
+                }
+                if (!salesDAO.CheckUserPermission(sale))
+                {
+                    return null;
+                }
+                return itemsDAO.ListSaleItems(sale);
+            }
+            return null;
         }
     }
 }

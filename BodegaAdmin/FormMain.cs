@@ -1,7 +1,6 @@
 ﻿using BodegaAdmin.localhost;
 using System;
 using System.Collections.Generic;
-using System.Reflection;
 using System.Windows.Forms;
 
 namespace BodegaAdmin
@@ -29,57 +28,6 @@ namespace BodegaAdmin
             FormLogin formLogin = new FormLogin();
             formLogin.ShowDialog();
             this.Close();
-        }
-
-        private ListView GenerateListView(ListView listView, List<Object> listObjects, string[] columnName, int[] columnWidth)
-        {
-            try
-            {
-                ListViewItem item;
-                PropertyInfo[] props;
-                int columnIndex = columnName.Length;
-                listView.Clear();
-
-                if (listObjects[0] is Products)
-                {
-                    props = typeof(Products).GetProperties();
-                }
-                else
-                {
-                    props = typeof(Sales).GetProperties();
-                }
-
-                for (int i = 0; i < columnIndex; i++)
-                {
-                    ColumnHeader col = new ColumnHeader();
-                    listView.Columns.Add(col);
-                    col.Text = columnName[i];
-                    col.Width = columnWidth[i];
-                }
-
-                foreach (Object obj in listObjects)
-                {
-                    item = listView.Items.Add("");
-
-                    //foreach (PropertyInfo p in props)
-                    for (int x = 0; x < columnIndex; x++)
-                    {
-                        if (x == 0)
-                        {
-                            item.Text = props[x].GetValue(obj, null).ToString();
-                        }
-                        else
-                        {
-                            item.SubItems.Add(props[x].GetValue(obj, null).ToString());
-                        }
-                    }
-                }
-                return listView;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
         }
 
         // Produtos
@@ -122,7 +70,7 @@ namespace BodegaAdmin
                     }
                     else
                     {
-                        MessageBox.Show("Não é possível deletar o produto.");
+                        MessageBox.Show("Erro ao deletar o produto.");
                     }
                 }
             }
@@ -191,7 +139,7 @@ namespace BodegaAdmin
                 List<Object> listProducts = new List<Object>(webService.ListProducts());
                 string[] columnName = { "ID", "Nome", "Preço" };
                 int[] columnWidth = { 50, 300, 50 };
-                listViewProducts = GenerateListView(listViewProducts, listProducts, columnName, columnWidth);
+                listViewProducts = GenerateList.GenerateListView(listViewProducts, listProducts, columnName, columnWidth);
             }
             catch (Exception ex)
             {
@@ -203,17 +151,110 @@ namespace BodegaAdmin
 
         private void BtnOpenSale_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                Sales s = CheckSale();
+                if (s != null)
+                {
+                    FormSale formSale = new FormSale(s);
+                    formSale.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void BtnChangeSale_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                Sales s = CheckSale();
+                if (s != null)
+                {
+                    if (webService.ChangeOpenedSale(s, !s.Open))
+                    {
+                        MessageBox.Show("Venda alterada com sucesso!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erro ao alterar a venda.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void BtnDeleteSale_Click(object sender, EventArgs e)
         {
+            try
+            {
+                Sales s = CheckSale();
+                if (s != null)
+                {
+                    if (webService.DeleteSale(s))
+                    {
+                        MessageBox.Show("Venda deletada com sucesso!");
+                        listViewSales.Items.Remove(listViewSales.SelectedItems[0]);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erro ao deletar a venda.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        
+        private Sales CheckSale()
+        {
+            try
+            {
+                if (listViewSales.SelectedItems.Count > 0)
+                {
+                    ListViewItem item = listViewSales.SelectedItems[0];
+                    Sales sale = new Sales();
+                    bool error = false;
 
+                    if (long.TryParse(item.SubItems[0].Text, out long idSale))
+                    {
+                        sale.Id = idSale;
+                    }
+                    else
+                    {
+                        error = true;
+                    }
+
+                    sale.Open = item.SubItems[1].Text.Equals("True");
+                    sale.User = Program.user;
+
+                    if (!error)
+                    {
+                        return sale;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Venda inválida!");
+                        return null;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Selecione uma venda.");
+                    return null;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         private void BtnListSale_Click(object sender, EventArgs e)
@@ -223,7 +264,7 @@ namespace BodegaAdmin
                 List<Object> listSales = new List<Object>(webService.ListAllSales(Program.user));
                 string[] columnName = { "ID", "Aberto", "dataabertura", "closedDateTime" };
                 int[] columnWidth = { 40, 120, 120, 120 };
-                listViewSales = GenerateListView(listViewSales, listSales, columnName, columnWidth);
+                listViewSales = GenerateList.GenerateListView(listViewSales, listSales, columnName, columnWidth);
             }
             catch (Exception ex)
             {

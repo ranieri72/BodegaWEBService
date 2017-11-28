@@ -43,6 +43,8 @@ namespace BodegaAdmin.localhost {
         
         private System.Threading.SendOrPostCallback DeleteSaleOperationCompleted;
         
+        private System.Threading.SendOrPostCallback SelectCompleteSaleOperationCompleted;
+        
         private System.Threading.SendOrPostCallback ListAllSalesOperationCompleted;
         
         private System.Threading.SendOrPostCallback ListSalesOperationCompleted;
@@ -51,7 +53,11 @@ namespace BodegaAdmin.localhost {
         
         private System.Threading.SendOrPostCallback InsertSaleItemOperationCompleted;
         
+        private System.Threading.SendOrPostCallback DeleteSaleItemOperationCompleted;
+        
         private System.Threading.SendOrPostCallback IncreaseQtdSaleItemOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback ListSaleItemsOperationCompleted;
         
         private System.Threading.SendOrPostCallback InsertUserOperationCompleted;
         
@@ -121,6 +127,9 @@ namespace BodegaAdmin.localhost {
         public event DeleteSaleCompletedEventHandler DeleteSaleCompleted;
         
         /// <remarks/>
+        public event SelectCompleteSaleCompletedEventHandler SelectCompleteSaleCompleted;
+        
+        /// <remarks/>
         public event ListAllSalesCompletedEventHandler ListAllSalesCompleted;
         
         /// <remarks/>
@@ -133,7 +142,13 @@ namespace BodegaAdmin.localhost {
         public event InsertSaleItemCompletedEventHandler InsertSaleItemCompleted;
         
         /// <remarks/>
+        public event DeleteSaleItemCompletedEventHandler DeleteSaleItemCompleted;
+        
+        /// <remarks/>
         public event IncreaseQtdSaleItemCompletedEventHandler IncreaseQtdSaleItemCompleted;
+        
+        /// <remarks/>
+        public event ListSaleItemsCompletedEventHandler ListSaleItemsCompleted;
         
         /// <remarks/>
         public event InsertUserCompletedEventHandler InsertUserCompleted;
@@ -347,6 +362,35 @@ namespace BodegaAdmin.localhost {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/SelectCompleteSale", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public Sales SelectCompleteSale(Sales sale) {
+            object[] results = this.Invoke("SelectCompleteSale", new object[] {
+                        sale});
+            return ((Sales)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void SelectCompleteSaleAsync(Sales sale) {
+            this.SelectCompleteSaleAsync(sale, null);
+        }
+        
+        /// <remarks/>
+        public void SelectCompleteSaleAsync(Sales sale, object userState) {
+            if ((this.SelectCompleteSaleOperationCompleted == null)) {
+                this.SelectCompleteSaleOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSelectCompleteSaleOperationCompleted);
+            }
+            this.InvokeAsync("SelectCompleteSale", new object[] {
+                        sale}, this.SelectCompleteSaleOperationCompleted, userState);
+        }
+        
+        private void OnSelectCompleteSaleOperationCompleted(object arg) {
+            if ((this.SelectCompleteSaleCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.SelectCompleteSaleCompleted(this, new SelectCompleteSaleCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ListAllSales", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public Sales[] ListAllSales(User user) {
             object[] results = this.Invoke("ListAllSales", new object[] {
@@ -467,6 +511,35 @@ namespace BodegaAdmin.localhost {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/DeleteSaleItem", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool DeleteSaleItem(SaleItems item) {
+            object[] results = this.Invoke("DeleteSaleItem", new object[] {
+                        item});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void DeleteSaleItemAsync(SaleItems item) {
+            this.DeleteSaleItemAsync(item, null);
+        }
+        
+        /// <remarks/>
+        public void DeleteSaleItemAsync(SaleItems item, object userState) {
+            if ((this.DeleteSaleItemOperationCompleted == null)) {
+                this.DeleteSaleItemOperationCompleted = new System.Threading.SendOrPostCallback(this.OnDeleteSaleItemOperationCompleted);
+            }
+            this.InvokeAsync("DeleteSaleItem", new object[] {
+                        item}, this.DeleteSaleItemOperationCompleted, userState);
+        }
+        
+        private void OnDeleteSaleItemOperationCompleted(object arg) {
+            if ((this.DeleteSaleItemCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.DeleteSaleItemCompleted(this, new DeleteSaleItemCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IncreaseQtdSaleItem", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public bool IncreaseQtdSaleItem(SaleItems item) {
             object[] results = this.Invoke("IncreaseQtdSaleItem", new object[] {
@@ -492,6 +565,35 @@ namespace BodegaAdmin.localhost {
             if ((this.IncreaseQtdSaleItemCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.IncreaseQtdSaleItemCompleted(this, new IncreaseQtdSaleItemCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ListSaleItems", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public SaleItems[] ListSaleItems(Sales sale) {
+            object[] results = this.Invoke("ListSaleItems", new object[] {
+                        sale});
+            return ((SaleItems[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ListSaleItemsAsync(Sales sale) {
+            this.ListSaleItemsAsync(sale, null);
+        }
+        
+        /// <remarks/>
+        public void ListSaleItemsAsync(Sales sale, object userState) {
+            if ((this.ListSaleItemsOperationCompleted == null)) {
+                this.ListSaleItemsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnListSaleItemsOperationCompleted);
+            }
+            this.InvokeAsync("ListSaleItems", new object[] {
+                        sale}, this.ListSaleItemsOperationCompleted, userState);
+        }
+        
+        private void OnListSaleItemsOperationCompleted(object arg) {
+            if ((this.ListSaleItemsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ListSaleItemsCompleted(this, new ListSaleItemsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1054,6 +1156,32 @@ namespace BodegaAdmin.localhost {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    public delegate void SelectCompleteSaleCompletedEventHandler(object sender, SelectCompleteSaleCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class SelectCompleteSaleCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal SelectCompleteSaleCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public Sales Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((Sales)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
     public delegate void ListAllSalesCompletedEventHandler(object sender, ListAllSalesCompletedEventArgs e);
     
     /// <remarks/>
@@ -1158,6 +1286,32 @@ namespace BodegaAdmin.localhost {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    public delegate void DeleteSaleItemCompletedEventHandler(object sender, DeleteSaleItemCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class DeleteSaleItemCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal DeleteSaleItemCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
     public delegate void IncreaseQtdSaleItemCompletedEventHandler(object sender, IncreaseQtdSaleItemCompletedEventArgs e);
     
     /// <remarks/>
@@ -1178,6 +1332,32 @@ namespace BodegaAdmin.localhost {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    public delegate void ListSaleItemsCompletedEventHandler(object sender, ListSaleItemsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ListSaleItemsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ListSaleItemsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public SaleItems[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((SaleItems[])(this.results[0]));
             }
         }
     }
