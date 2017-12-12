@@ -26,7 +26,7 @@ namespace BodegaAdmin.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://192.168.15.4:5454/WebService1.asmx")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://bodegawebsoap.ddns.net:5454/WebService1.asmx")]
         public string BodegaAdmin_WebReferenceLocal_WebService1 {
             get {
                 return ((string)(this["BodegaAdmin_WebReferenceLocal_WebService1"]));

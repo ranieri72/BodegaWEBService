@@ -172,6 +172,7 @@ namespace BodegaAdmin
             {
                 FormMain.listProducts = new List<Object>(webService.ListProducts());
                 PopulateListBox();
+                MessageBox.Show("Produtos atualizados!");
             }
             catch (Exception ex)
             {

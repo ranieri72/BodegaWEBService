@@ -137,10 +137,10 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://192.168.15.4:5454/WebService1.asmx">
+    <WebReferenceUrl Include="http://bodegawebsoap.ddns.net:5454/WebService1.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\WebReferenceLocal\</RelPath>
-      <UpdateFromURL>http://192.168.15.4:5454/WebService1.asmx</UpdateFromURL>
+      <UpdateFromURL>http://bodegawebsoap.ddns.net:5454/WebService1.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>

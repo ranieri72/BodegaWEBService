@@ -13,7 +13,7 @@ namespace BodegaAdmin
             try
             {
                 ListViewItem item;
-                PropertyInfo[] props;
+                PropertyInfo[] props = null;
                 int columnIndex = columnName.Length;
                 listView.Clear();
 
@@ -21,9 +21,13 @@ namespace BodegaAdmin
                 {
                     props = typeof(Products).GetProperties();
                 }
-                else
+                else if (listObjects[0] is Sales)
                 {
                     props = typeof(Sales).GetProperties();
+                }
+                else if (listObjects[0] is SaleItems)
+                {
+                    props = typeof(SaleItems).GetProperties();
                 }
 
                 for (int i = 0; i < columnIndex; i++)
