@@ -42,13 +42,17 @@
             this.label11 = new System.Windows.Forms.Label();
             this.lbTotalSale = new System.Windows.Forms.Label();
             this.btnDeleteSaleItem = new System.Windows.Forms.Button();
+            this.listBoxProducts = new System.Windows.Forms.ListBox();
+            this.btnListProd = new System.Windows.Forms.Button();
+            this.btnSaveItem = new System.Windows.Forms.Button();
+            this.btnIncreaseProd = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listViewSaleItems
             // 
-            this.listViewSaleItems.Location = new System.Drawing.Point(12, 70);
+            this.listViewSaleItems.Location = new System.Drawing.Point(231, 65);
             this.listViewSaleItems.Name = "listViewSaleItems";
-            this.listViewSaleItems.Size = new System.Drawing.Size(671, 400);
+            this.listViewSaleItems.Size = new System.Drawing.Size(452, 407);
             this.listViewSaleItems.TabIndex = 0;
             this.listViewSaleItems.UseCompatibleStateImageBehavior = false;
             // 
@@ -170,11 +174,53 @@
             this.btnDeleteSaleItem.UseVisualStyleBackColor = true;
             this.btnDeleteSaleItem.Click += new System.EventHandler(this.BtnDeleteSaleItem_Click);
             // 
+            // listBoxProducts
+            // 
+            this.listBoxProducts.FormattingEnabled = true;
+            this.listBoxProducts.Location = new System.Drawing.Point(12, 65);
+            this.listBoxProducts.Name = "listBoxProducts";
+            this.listBoxProducts.Size = new System.Drawing.Size(213, 407);
+            this.listBoxProducts.TabIndex = 14;
+            // 
+            // btnListProd
+            // 
+            this.btnListProd.Location = new System.Drawing.Point(12, 480);
+            this.btnListProd.Name = "btnListProd";
+            this.btnListProd.Size = new System.Drawing.Size(95, 23);
+            this.btnListProd.TabIndex = 15;
+            this.btnListProd.Text = "Listar Produtos";
+            this.btnListProd.UseVisualStyleBackColor = true;
+            this.btnListProd.Click += new System.EventHandler(this.BtnListProd_Click);
+            // 
+            // btnSaveItem
+            // 
+            this.btnSaveItem.Location = new System.Drawing.Point(114, 480);
+            this.btnSaveItem.Name = "btnSaveItem";
+            this.btnSaveItem.Size = new System.Drawing.Size(111, 23);
+            this.btnSaveItem.TabIndex = 16;
+            this.btnSaveItem.Text = "Adicionar Produto";
+            this.btnSaveItem.UseVisualStyleBackColor = true;
+            this.btnSaveItem.Click += new System.EventHandler(this.BtnSaveItem_Click);
+            // 
+            // btnIncreaseProd
+            // 
+            this.btnIncreaseProd.Location = new System.Drawing.Point(491, 480);
+            this.btnIncreaseProd.Name = "btnIncreaseProd";
+            this.btnIncreaseProd.Size = new System.Drawing.Size(87, 23);
+            this.btnIncreaseProd.TabIndex = 17;
+            this.btnIncreaseProd.Text = "Incrementar +1";
+            this.btnIncreaseProd.UseVisualStyleBackColor = true;
+            this.btnIncreaseProd.Click += new System.EventHandler(this.BtnIncreaseProd_Click);
+            // 
             // FormSale
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(695, 515);
+            this.Controls.Add(this.btnIncreaseProd);
+            this.Controls.Add(this.btnSaveItem);
+            this.Controls.Add(this.btnListProd);
+            this.Controls.Add(this.listBoxProducts);
             this.Controls.Add(this.btnDeleteSaleItem);
             this.Controls.Add(this.lbTotalSale);
             this.Controls.Add(this.label11);
@@ -212,5 +258,9 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label lbTotalSale;
         private System.Windows.Forms.Button btnDeleteSaleItem;
+        private System.Windows.Forms.ListBox listBoxProducts;
+        private System.Windows.Forms.Button btnListProd;
+        private System.Windows.Forms.Button btnSaveItem;
+        private System.Windows.Forms.Button btnIncreaseProd;
     }
 }

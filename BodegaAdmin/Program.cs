@@ -1,4 +1,4 @@
-﻿using BodegaAdmin.localhost;
+﻿using BodegaAdmin.WebReferenceLocal;
 using System;
 using System.Windows.Forms;
 

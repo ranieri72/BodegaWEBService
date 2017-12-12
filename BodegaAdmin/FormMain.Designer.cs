@@ -36,13 +36,6 @@
             this.btnSaveProd = new System.Windows.Forms.Button();
             this.listViewProducts = new System.Windows.Forms.ListView();
             this.tabPageSales = new System.Windows.Forms.TabPage();
-            this.edtQtdProd = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.edtIdSale = new System.Windows.Forms.TextBox();
-            this.btnCreateSaleItem = new System.Windows.Forms.Button();
-            this.edtIdProd = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.btnCreateSale = new System.Windows.Forms.Button();
             this.btnListSale = new System.Windows.Forms.Button();
             this.btnDeleteSale = new System.Windows.Forms.Button();
@@ -51,7 +44,6 @@
             this.listViewSales = new System.Windows.Forms.ListView();
             this.lbWelcome = new System.Windows.Forms.Label();
             this.btnLogout = new System.Windows.Forms.Button();
-            this.btnIncreaseProd = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPageProducts.SuspendLayout();
             this.tabPageSales.SuspendLayout();
@@ -139,14 +131,6 @@
             // 
             // tabPageSales
             // 
-            this.tabPageSales.Controls.Add(this.btnIncreaseProd);
-            this.tabPageSales.Controls.Add(this.edtQtdProd);
-            this.tabPageSales.Controls.Add(this.label3);
-            this.tabPageSales.Controls.Add(this.label2);
-            this.tabPageSales.Controls.Add(this.edtIdSale);
-            this.tabPageSales.Controls.Add(this.btnCreateSaleItem);
-            this.tabPageSales.Controls.Add(this.edtIdProd);
-            this.tabPageSales.Controls.Add(this.label1);
             this.tabPageSales.Controls.Add(this.btnCreateSale);
             this.tabPageSales.Controls.Add(this.btnListSale);
             this.tabPageSales.Controls.Add(this.btnDeleteSale);
@@ -160,64 +144,6 @@
             this.tabPageSales.TabIndex = 1;
             this.tabPageSales.Text = "Vendas";
             this.tabPageSales.UseVisualStyleBackColor = true;
-            // 
-            // edtQtdProd
-            // 
-            this.edtQtdProd.Location = new System.Drawing.Point(51, 499);
-            this.edtQtdProd.Name = "edtQtdProd";
-            this.edtQtdProd.Size = new System.Drawing.Size(66, 20);
-            this.edtQtdProd.TabIndex = 16;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(9, 502);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(44, 13);
-            this.label3.TabIndex = 15;
-            this.label3.Text = "qtdProd";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 420);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(46, 13);
-            this.label2.TabIndex = 14;
-            this.label2.Text = "codSale";
-            // 
-            // edtIdSale
-            // 
-            this.edtIdSale.Location = new System.Drawing.Point(51, 417);
-            this.edtIdSale.Name = "edtIdSale";
-            this.edtIdSale.Size = new System.Drawing.Size(66, 20);
-            this.edtIdSale.TabIndex = 13;
-            // 
-            // btnCreateSaleItem
-            // 
-            this.btnCreateSaleItem.Location = new System.Drawing.Point(6, 525);
-            this.btnCreateSaleItem.Name = "btnCreateSaleItem";
-            this.btnCreateSaleItem.Size = new System.Drawing.Size(111, 23);
-            this.btnCreateSaleItem.TabIndex = 12;
-            this.btnCreateSaleItem.Text = "Novo Item";
-            this.btnCreateSaleItem.UseVisualStyleBackColor = true;
-            this.btnCreateSaleItem.Click += new System.EventHandler(this.BtnCreateSaleItem_Click);
-            // 
-            // edtIdProd
-            // 
-            this.edtIdProd.Location = new System.Drawing.Point(51, 443);
-            this.edtIdProd.Name = "edtIdProd";
-            this.edtIdProd.Size = new System.Drawing.Size(66, 20);
-            this.edtIdProd.TabIndex = 11;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 446);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(47, 13);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "codProd";
             // 
             // btnCreateSale
             // 
@@ -301,16 +227,6 @@
             this.btnLogout.UseVisualStyleBackColor = true;
             this.btnLogout.Click += new System.EventHandler(this.BtnLogout_Click);
             // 
-            // btnIncreaseProd
-            // 
-            this.btnIncreaseProd.Location = new System.Drawing.Point(6, 469);
-            this.btnIncreaseProd.Name = "btnIncreaseProd";
-            this.btnIncreaseProd.Size = new System.Drawing.Size(111, 23);
-            this.btnIncreaseProd.TabIndex = 17;
-            this.btnIncreaseProd.Text = "Incrementar +1";
-            this.btnIncreaseProd.UseVisualStyleBackColor = true;
-            this.btnIncreaseProd.Click += new System.EventHandler(this.BtnIncreaseProd_Click);
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -327,7 +243,6 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPageProducts.ResumeLayout(false);
             this.tabPageSales.ResumeLayout(false);
-            this.tabPageSales.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -351,14 +266,6 @@
         private System.Windows.Forms.Button btnChangeSale;
         private System.Windows.Forms.Button btnOpenSale;
         private System.Windows.Forms.Button btnCreateSale;
-        private System.Windows.Forms.TextBox edtIdProd;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox edtIdSale;
-        private System.Windows.Forms.Button btnCreateSaleItem;
-        private System.Windows.Forms.TextBox edtQtdProd;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button btnIncreaseProd;
     }
 }
 

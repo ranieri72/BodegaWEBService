@@ -1,4 +1,4 @@
-﻿using BodegaAdmin.localhost;
+﻿using BodegaAdmin.WebReferenceLocal;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -19,10 +19,22 @@ namespace BodegaAdmin
                 sale = s;
                 GetSaleInfo();
                 ListSaleItems();
+                PopulateListBox();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        public void PopulateListBox()
+        {
+            if (FormMain.listProducts != null && FormMain.listProducts.Count > 0)
+            {
+                foreach (Products p in FormMain.listProducts)
+                {
+                    listBoxProducts.Items.Add(String.Format("R${0} - {1}", p.Price, p.Name));
+                }
             }
         }
 
@@ -152,6 +164,73 @@ namespace BodegaAdmin
             {
                 throw;
             }
+        }
+
+        private void BtnListProd_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                FormMain.listProducts = new List<Object>(webService.ListProducts());
+                PopulateListBox();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void BtnIncreaseProd_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SaleItems item = GenerateSaleItem();
+                if (webService.IncreaseQtdSaleItem(item))
+                {
+                    MessageBox.Show("Item incrementado com sucesso!");
+                }
+                else
+                {
+                    MessageBox.Show("Erro na incrementação do item!");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void BtnSaveItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SaleItems item = GenerateSaleItem();
+                item.Qtd = 1;
+                if (webService.InsertSaleItem(item))
+                {
+                    MessageBox.Show("Item salvo com sucesso!");
+                }
+                else
+                {
+                    MessageBox.Show("Erro durante o cadastro do item!");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private SaleItems GenerateSaleItem()
+        {
+            int ListProdIndex = listBoxProducts.SelectedIndex;
+            Products product = (Products)FormMain.listProducts[ListProdIndex];
+
+            SaleItems item = new SaleItems
+            {
+                Product = product,
+                Sale = sale
+            };
+            return item;
         }
     }
 }

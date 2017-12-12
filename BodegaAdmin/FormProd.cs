@@ -1,5 +1,5 @@
 ﻿using System;
-using BodegaAdmin.localhost;
+using BodegaAdmin.WebReferenceLocal;
 using System.Windows.Forms;
 
 namespace BodegaAdmin

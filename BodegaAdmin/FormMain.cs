@@ -1,4 +1,4 @@
-﻿using BodegaAdmin.localhost;
+﻿using BodegaAdmin.WebReferenceLocal;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -8,6 +8,7 @@ namespace BodegaAdmin
     public partial class FormMain : Form
     {
         private WebService1 webService;
+        public static List<Object> listProducts;
 
         public FormMain()
         {
@@ -136,7 +137,7 @@ namespace BodegaAdmin
         {
             try
             {
-                List<Object> listProducts = new List<Object>(webService.ListProducts());
+                listProducts = new List<Object>(webService.ListProducts());
                 string[] columnName = { "ID", "Nome", "Preço" };
                 int[] columnWidth = { 50, 300, 50 };
                 listViewProducts = GenerateList.GenerateListView(listViewProducts, listProducts, columnName, columnWidth);
@@ -294,76 +295,6 @@ namespace BodegaAdmin
 
                 MessageBox.Show(ex.Message);
             }
-        }
-
-        private void BtnCreateSaleItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                Products product = new Products
-                {
-                    Id = Int32.Parse(edtIdProd.Text)
-                };
-                Sales sale = new Sales
-                {
-                    User = Program.user,
-                    Id = Int32.Parse(edtIdSale.Text)
-                };
-                SaleItems item = new SaleItems
-                {
-                    Qtd = Int32.Parse(edtQtdProd.Text),
-                    Product = product,
-                    Sale = sale
-                };
-                if (webService.InsertSaleItem(item))
-                {
-                    MessageBox.Show("Item salvo com sucesso!");
-                }
-                else
-                {
-                    MessageBox.Show("Erro durante o cadastro do item!");
-                }
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void BtnIncreaseProd_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                Products product = new Products
-                {
-                    Id = Int32.Parse(edtIdProd.Text)
-                };
-                Sales sale = new Sales
-                {
-                    User = Program.user,
-                    Id = Int32.Parse(edtIdSale.Text)
-                };
-                SaleItems item = new SaleItems
-                {
-                    Product = product,
-                    Sale = sale
-                };
-                if (webService.IncreaseQtdSaleItem(item))
-                {
-                    MessageBox.Show("Item incrementado com sucesso!");
-                }
-                else
-                {
-                    MessageBox.Show("Erro na incrementação do item!");
-                }
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show(ex.Message);
-            }
-
         }
     }
 }

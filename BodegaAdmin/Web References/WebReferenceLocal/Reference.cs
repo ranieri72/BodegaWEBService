@@ -13,7 +13,7 @@
 // 
 #pragma warning disable 1591
 
-namespace BodegaAdmin.localhost {
+namespace BodegaAdmin.WebReferenceLocal {
     using System;
     using System.Web.Services;
     using System.Diagnostics;
@@ -71,7 +71,7 @@ namespace BodegaAdmin.localhost {
         
         /// <remarks/>
         public WebService1() {
-            this.Url = global::BodegaAdmin.Properties.Settings.Default.BodegaAdmin_localhost_WebService1;
+            this.Url = global::BodegaAdmin.Properties.Settings.Default.BodegaAdmin_WebReferenceLocal_WebService1;
             if ((this.IsLocalFileSystemWebService(this.Url) == true)) {
                 this.UseDefaultCredentials = true;
                 this.useDefaultCredentialsSetExplicitly = false;

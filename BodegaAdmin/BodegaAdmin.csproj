@@ -74,7 +74,7 @@
     <Compile Include="GenerateList.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Web References\localhost\Reference.cs">
+    <Compile Include="Web References\WebReferenceLocal\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
@@ -109,23 +109,23 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Web References\localhost\Products.datasource">
+    <None Include="Web References\WebReferenceLocal\Products.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
-    <None Include="Web References\localhost\Reference.map">
+    <None Include="Web References\WebReferenceLocal\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Web References\localhost\SaleItems.datasource">
+    <None Include="Web References\WebReferenceLocal\SaleItems.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
-    <None Include="Web References\localhost\Sales.datasource">
+    <None Include="Web References\WebReferenceLocal\Sales.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
-    <None Include="Web References\localhost\User.datasource">
+    <None Include="Web References\WebReferenceLocal\User.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
-    <None Include="Web References\localhost\WebService1.wsdl" />
+    <None Include="Web References\WebReferenceLocal\WebService1.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -137,20 +137,20 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://localhost:54968/WebService1.asmx">
+    <WebReferenceUrl Include="http://192.168.15.4:5454/WebService1.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
-      <RelPath>Web References\localhost\</RelPath>
-      <UpdateFromURL>http://localhost:54968/WebService1.asmx</UpdateFromURL>
+      <RelPath>Web References\WebReferenceLocal\</RelPath>
+      <UpdateFromURL>http://192.168.15.4:5454/WebService1.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
       </CachedDynamicPropName>
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
-      <CachedSettingsPropName>BodegaAdmin_localhost_WebService1</CachedSettingsPropName>
+      <CachedSettingsPropName>BodegaAdmin_WebReferenceLocal_WebService1</CachedSettingsPropName>
     </WebReferenceUrl>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Web References\localhost\WebService1.disco" />
+    <None Include="Web References\WebReferenceLocal\WebService1.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
